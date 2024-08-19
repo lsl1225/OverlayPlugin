@@ -58,7 +58,7 @@ namespace RainbowMage.OverlayPlugin
             }
             else
             {
-                tabBackColor = GetColorMix(ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting, ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting, 0.1);
+                tabBackColor = GetColorMix(ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting, ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting, 0.0);
                 tabSetBackColor = GetColorMix(ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting, ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting, 0.2);
             }
 
