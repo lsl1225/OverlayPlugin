@@ -64,8 +64,8 @@ namespace RainbowMage.OverlayPlugin
 
             //base.OnPaint(e);    // Seems unnecessary since the next line wipes everything?
             e.Graphics.Clear(ActGlobals.oFormActMain?.ActColorSettings.MainWindowColors.BackColorSetting ?? SystemColors.ControlLightLight);
-            Rectangle tabsetRect = new Rectangle(Dpi(4), Dpi(4), (ItemSize.Height * RowCount) - Dpi(4), Height - Dpi(8));   // The entire tabset area
-            Rectangle tabmodelRect = new Rectangle(tabsetRect.X + Dpi(2), 0, tabsetRect.Width - Dpi(4), 20);    // A size model for a single tab
+            Rectangle tabsetRect = new Rectangle(2, Dpi(4), (ItemSize.Height * RowCount) - 0, Height);   // The entire tabset area
+            Rectangle tabmodelRect = new Rectangle(tabsetRect.X + Dpi(2), 0, ItemSize.Height - Dpi(4), 20);    // A size model for a single tab
             e.Graphics.FillRectangle(new SolidBrush(tabSetBackColor), tabsetRect);
 
             int inc = 0;
@@ -75,9 +75,9 @@ namespace RainbowMage.OverlayPlugin
                 Font fontF = Font;
                 Font fontFSmall = new Font(Font.FontFamily, (float)(Font.Size * 0.85));  // This is already DPI scaled by Windows because this.Font was
                 Rectangle tabclipRect = GetTabRect(inc);    // A clipping rectangle that encompasses this tab
-                Rectangle tabRect = new Rectangle(tabmodelRect.X, tabclipRect.Y + Dpi(5), tabmodelRect.Width, tabclipRect.Height - Dpi(2)); // A combination of our tab size model and the offset from the clipping rectangle
-                Rectangle textRect1 = new Rectangle(tabmodelRect.X, tabclipRect.Y + Dpi(6), tabmodelRect.Width, tabclipRect.Height - Dpi(20));
-                Rectangle textRect2 = new Rectangle(tabmodelRect.X, tabclipRect.Y + Dpi(22), tabmodelRect.Width, tabclipRect.Height - Dpi(20));
+                Rectangle tabRect = new Rectangle(tabclipRect.X + Dpi(2), tabclipRect.Y + Dpi(5), tabmodelRect.Width, tabclipRect.Height - Dpi(2)); // A combination of our tab size model and the offset from the clipping rectangle
+                Rectangle textRect1 = new Rectangle(tabclipRect.X + Dpi(2), tabclipRect.Y + Dpi(6), tabmodelRect.Width, tabclipRect.Height - Dpi(20));
+                Rectangle textRect2 = new Rectangle(tabclipRect.X + Dpi(2), tabclipRect.Y + Dpi(22), tabmodelRect.Width, tabclipRect.Height - Dpi(20));
 
                 StringFormat sf = new StringFormat();
                 sf.LineAlignment = StringAlignment.Center;

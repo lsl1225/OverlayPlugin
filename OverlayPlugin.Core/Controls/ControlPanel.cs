@@ -81,7 +81,7 @@ namespace RainbowMage.OverlayPlugin
                 }
             };
 
-            if(ActGlobals.oFormActMain != null)
+            if (ActGlobals.oFormActMain != null)
             {
                 ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
