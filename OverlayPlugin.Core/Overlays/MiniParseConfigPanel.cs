@@ -43,9 +43,9 @@ namespace RainbowMage.OverlayPlugin.Overlays
             if (ActGlobals.oFormActMain != null)
             {
                 ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InvertColorsChanged += ActColorSettings_InvertColorsChanged;
                 UpdateActColorSettings();
             }
@@ -81,7 +81,7 @@ namespace RainbowMage.OverlayPlugin.Overlays
                 // DataGrid
                 hotkeyGridView.EnableHeadersVisualStyles = false;
                 hotkeyGridView.ColumnHeadersDefaultCellStyle.BackColor = ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSetting;
-                hotkeyGridView.ColumnHeadersDefaultCellStyle.ForeColor = ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.ForeColor;
+                hotkeyGridView.ColumnHeadersDefaultCellStyle.ForeColor = ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.ForeColorSetting;
             }
             else
             {
@@ -95,13 +95,13 @@ namespace RainbowMage.OverlayPlugin.Overlays
             }
             // Text Boxes
             textMiniParseUrl.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            textMiniParseUrl.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            textMiniParseUrl.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             // ComboBoxes
             applyPresetCombo.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            applyPresetCombo.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            applyPresetCombo.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             // NumericUpDowns
             nudMaxFrameRate.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            nudMaxFrameRate.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            nudMaxFrameRate.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
         }
 
         private void SetupControlProperties()

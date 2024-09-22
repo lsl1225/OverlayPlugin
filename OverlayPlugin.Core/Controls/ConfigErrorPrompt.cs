@@ -20,7 +20,7 @@ namespace RainbowMage.OverlayPlugin.Controls
             if (ActGlobals.oFormActMain != null)
             {
                 ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 UpdateActColorSettings();
             }
         }

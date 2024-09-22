@@ -35,9 +35,9 @@ namespace RainbowMage.OverlayPlugin.EventSources
             if (ActGlobals.oFormActMain != null)
             {
                 ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InvertColorsChanged += ActColorSettings_InvertColorsChanged;
                 UpdateActColorSettings();
             }
@@ -73,12 +73,12 @@ namespace RainbowMage.OverlayPlugin.EventSources
             }
             // TextBoxes
             textEnmityInterval.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            textEnmityInterval.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            textEnmityInterval.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             textUpdateInterval.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            textUpdateInterval.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            textUpdateInterval.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             // ComboBoxes
             comboSortKey.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            comboSortKey.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            comboSortKey.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
         }
 
         private void LoadConfig(object sender, EventArgs args)

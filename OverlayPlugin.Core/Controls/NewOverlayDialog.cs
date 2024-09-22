@@ -82,9 +82,9 @@ namespace RainbowMage.OverlayPlugin
             if (ActGlobals.oFormActMain != null)
             {
                 ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InvertColorsChanged += ActColorSettings_InvertColorsChanged;
                 UpdateActColorSettings();
             }
@@ -120,12 +120,12 @@ namespace RainbowMage.OverlayPlugin
             }
             // TextBoxes
             textBox1.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            textBox1.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            textBox1.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             // ComboBoxes
             cbPreset.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            cbPreset.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            cbPreset.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             cbType.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            cbType.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            cbType.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
         }
 
         private Dictionary<string, OverlayPreset> PreparePresetCombo(ComboBox cbPreset)

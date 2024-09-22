@@ -35,9 +35,9 @@ namespace RainbowMage.OverlayPlugin.Overlays
             if (ActGlobals.oFormActMain != null)
             {
                 ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.MainWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
-                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSettingChanged += ActColorSettings_ColorSettingChanged;
+                ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSettingChanged += ActColorSettings_ColorSettingChanged;
                 ActGlobals.oFormActMain.ActColorSettings.InvertColorsChanged += ActColorSettings_InvertColorsChanged;
                 UpdateActColorSettings();
             }
@@ -73,15 +73,15 @@ namespace RainbowMage.OverlayPlugin.Overlays
             }
             // Text Boxes
             textBoxUrl.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            textBoxUrl.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            textBoxUrl.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             textGlobalHotkey.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            textGlobalHotkey.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            textGlobalHotkey.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             // ComboBoxes
             comboHotkeyType.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            comboHotkeyType.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            comboHotkeyType.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
             // NumericUpDowns
             nudMaxFrameRate.BackColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.BackColorSetting;
-            nudMaxFrameRate.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColor;
+            nudMaxFrameRate.ForeColor = ActGlobals.oFormActMain.ActColorSettings.InternalWindowColors.ForeColorSetting;
         }
         private void SetupControlProperties()
         {
