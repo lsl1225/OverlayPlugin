@@ -150,11 +150,11 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
         // This function always returns a combatant object, even if empty.
         protected abstract unsafe Combatant GetCombatantFromByteArray(byte[] source, uint mycharID, bool isPlayer, bool exceptEffects = false);
 
-        protected unsafe List<EffectEntry> GetEffectEntries(byte* source, ObjectType type, uint mycharID)
+        protected unsafe List<EffectEntry> GetEffectEntries(Version version, byte* source, ObjectType type, uint mycharID)
         {
             var result = new List<EffectEntry>();
             int maxEffects = (type == ObjectType.PC) ? 30 : 60;
-            var size = EffectMemory.Size * maxEffects;
+            var size = (version.Minor == 2 ? EffectMemory.Size : 12) * maxEffects;
 
             var bytes = new byte[size];
             Marshal.Copy((IntPtr)source, bytes, 0, size);

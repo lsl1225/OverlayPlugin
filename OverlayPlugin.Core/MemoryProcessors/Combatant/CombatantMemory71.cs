@@ -71,7 +71,7 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
                     TargetID = (ObjectType)mem.Type == ObjectType.PC ? mem.PCTargetID : mem.NPCTargetID,
                     CurrentHP = mem.CurrentHP,
                     MaxHP = mem.MaxHP,
-                    Effects = exceptEffects ? new List<EffectEntry>() : GetEffectEntries(mem.Effects, (ObjectType)mem.Type, mycharID),
+                    Effects = exceptEffects ? new List<EffectEntry>() : GetEffectEntries(GetVersion(), mem.Effects, (ObjectType)mem.Type, mycharID),
 
                     BNpcID = mem.BNpcID,
                     CurrentMP = mem.CurrentMP,
