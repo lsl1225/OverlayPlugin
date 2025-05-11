@@ -10,7 +10,8 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
     {
         private const string charmapSignature = "488B5720B8000000E0483BD00F84????????488D0D";
 
-        // TODO: Remove EffectMemory72 and GetEffectEntries override after all region reaching patch 7.2 (Size 12 -> 16)
+        // TODO: Once all regions are on 7.2, remove the override for `GetEffectEntries` and `GetEffectEntryFromByteArray`
+        // Remove the struct for `EffectMemory72`, and adjust the parent struct to have the correct size of 16 bytes.
         public CombatantMemory72(TinyIoCContainer container)
             : base(container, charmapSignature, CombatantMemory.Size, EffectMemory72.Size, 629)
         {
