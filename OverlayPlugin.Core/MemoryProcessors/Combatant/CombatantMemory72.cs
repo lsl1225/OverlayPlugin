@@ -280,7 +280,7 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
             return result;
         }
 
-        new protected unsafe EffectEntry GetEffectEntryFromByteArray(byte[] source, int num = 0)
+        protected override unsafe EffectEntry GetEffectEntryFromByteArray(byte[] source, int num = 0)
         {
             fixed (byte* p = source)
             {
