@@ -253,7 +253,7 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
             // Missing PartyType
         }
 
-        new protected unsafe List<EffectEntry> GetEffectEntries(byte* source, ObjectType type, uint mycharID)
+        protected override unsafe List<EffectEntry> GetEffectEntries(byte* source, ObjectType type, uint mycharID)
         {
             var result = new List<EffectEntry>();
             int maxEffects = (type == ObjectType.PC) ? 30 : 60;
