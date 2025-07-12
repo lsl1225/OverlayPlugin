@@ -10,7 +10,7 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
     {
         private const string charmapSignature = "488B5720B8000000E0483BD00F84????????488D0D";
 
-        // TODO: Once all regions are on 7.2, remove the override for `GetEffectEntries` and `GetEffectEntryFromByteArray`
+        // TODO: Once all regions are on 7.2, remove the new methods for `GetEffectEntries` and `GetEffectEntryFromByteArray`
         // Remove the struct for `EffectMemory72`, and adjust the parent struct to have the correct size of 16 bytes.
         public CombatantMemory72(TinyIoCContainer container)
             : base(container, charmapSignature, CombatantMemory.Size, EffectMemory72.Size, 629)
@@ -253,7 +253,7 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
             // Missing PartyType
         }
 
-        protected override unsafe List<EffectEntry> GetEffectEntries(byte* source, ObjectType type, uint mycharID)
+        protected new unsafe List<EffectEntry> GetEffectEntries(byte* source, ObjectType type, uint mycharID)
         {
             var result = new List<EffectEntry>();
             int maxEffects = (type == ObjectType.PC) ? 30 : 60;
@@ -280,7 +280,7 @@ namespace RainbowMage.OverlayPlugin.MemoryProcessors.Combatant
             return result;
         }
 
-        protected override unsafe EffectEntry GetEffectEntryFromByteArray(byte[] source, int num = 0)
+        protected new unsafe EffectEntry GetEffectEntryFromByteArray(byte[] source, int num = 0)
         {
             fixed (byte* p = source)
             {
