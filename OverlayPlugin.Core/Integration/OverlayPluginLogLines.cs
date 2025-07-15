@@ -52,6 +52,8 @@ namespace RainbowMage.OverlayPlugin
         private PluginConfig config;
         private TinyIoCContainer container;
 
+        private string versionCache = null;
+
         private int exceptionCount = 0;
         private const int maxExceptionsLogged = 3;
 
@@ -215,40 +217,53 @@ namespace RainbowMage.OverlayPlugin
             }
         }
 
+        private string GetVersion(MachinaRegion machinaRegion)
+        {
+            if (this.versionCache != null) return this.versionCache;
+
+            var version = repository.GetGameVersion();
+            if (version == null || version == "")
+            {
+                LogException($"Could not detect game version from FFXIV_ACT_Plugin, defaulting to latest version for region {machinaRegion}");
+
+                var possibleVersions = new List<string>();
+                if (opcodesFile != null && opcodesFile.ContainsKey(machinaRegion))
+                {
+                    foreach (var key in opcodesFile[machinaRegion].Keys)
+                        possibleVersions.Add(key);
+                }
+
+                if (opcodesConfig != null && opcodesConfig.ContainsKey(machinaRegion))
+                {
+                    foreach (var key in opcodesConfig[machinaRegion].Keys)
+                        possibleVersions.Add(key);
+                }
+                possibleVersions.Sort();
+
+                if (possibleVersions.Count > 0)
+                {
+                    version = possibleVersions[possibleVersions.Count - 1];
+                    this.versionCache = version;
+                    LogException($"Detected most recent version for {machinaRegion} = {version}");
+                }
+                else
+                {
+                    LogException($"Could not determine latest version for region {machinaRegion}");
+                    return null;
+                }
+            }
+
+            return version;
+        }
+
         public IOpcodeConfigEntry this[string name, MachinaRegion machinaRegion]
         {
             get
             {
-                var version = repository.GetGameVersion();
-                if (version == null || version == "")
-                {
-                    LogException($"Could not detect game version from FFXIV_ACT_Plugin, defaulting to latest version for region {machinaRegion}");
-
-                    var possibleVersions = new List<string>();
-                    if (opcodesFile != null && opcodesFile.ContainsKey(machinaRegion))
-                    {
-                        foreach (var key in opcodesFile[machinaRegion].Keys)
-                            possibleVersions.Add(key);
-                    }
-
-                    if (opcodesConfig != null && opcodesConfig.ContainsKey(machinaRegion))
-                    {
-                        foreach (var key in opcodesConfig[machinaRegion].Keys)
-                            possibleVersions.Add(key);
-                    }
-                    possibleVersions.Sort();
-
-                    if (possibleVersions.Count > 0)
-                    {
-                        version = possibleVersions[possibleVersions.Count - 1];
-                        LogException($"Detected most recent version for {machinaRegion} = {version}");
-                    }
-                    else
-                    {
-                        LogException($"Could not determine latest version for region {machinaRegion}");
-                        return null;
-                    }
-                }
+                // 强制使用 Global
+                machinaRegion = "Global";
+                var version = GetVersion(machinaRegion);
+                if (version == null) return null;
 
                 var opcode = GetOpcode(name, opcodesConfig, version, "config", machinaRegion);
                 if (opcode == null)
