@@ -170,6 +170,16 @@ namespace RainbowMage.OverlayPlugin
             }
         }
 
+        private HashSet<string> loggedMessages = new HashSet<string>();
+
+        private void LogOnce(LogLevel level, string message)
+        {
+            if (loggedMessages.Contains(message))
+                return;
+            loggedMessages.Add(message);
+            logger.Log(level, message);
+        }
+
         private void LogException(string message)
         {
             if (exceptionCount >= maxExceptionsLogged)
@@ -219,12 +229,12 @@ namespace RainbowMage.OverlayPlugin
 
         private string GetVersion(MachinaRegion machinaRegion)
         {
-            if (this.versionCache != null) return this.versionCache;
-
-            var version = repository.GetGameVersion();
-            if (version == null || version == "")
+            get
             {
-                LogException($"Could not detect game version from FFXIV_ACT_Plugin, defaulting to latest version for region {machinaRegion}");
+                var version = repository.GetGameVersion();
+                if (version == null || version == "")
+                {
+                    LogOnce(LogLevel.Info, $"Could not detect game version from FFXIV_ACT_Plugin, defaulting to latest version for region {machinaRegion}");
 
                 var possibleVersions = new List<string>();
                 if (opcodesFile != null && opcodesFile.ContainsKey(machinaRegion))
@@ -240,30 +250,17 @@ namespace RainbowMage.OverlayPlugin
                 }
                 possibleVersions.Sort();
 
-                if (possibleVersions.Count > 0)
-                {
-                    version = possibleVersions[possibleVersions.Count - 1];
-                    this.versionCache = version;
-                    LogException($"Detected most recent version for {machinaRegion} = {version}");
+                    if (possibleVersions.Count > 0)
+                    {
+                        version = possibleVersions[possibleVersions.Count - 1];
+                        LogOnce(LogLevel.Info, $"Detected most recent version for {machinaRegion} = {version}");
+                    }
+                    else
+                    {
+                        LogOnce(LogLevel.Info, $"Could not determine latest version for region {machinaRegion}");
+                        return null;
+                    }
                 }
-                else
-                {
-                    LogException($"Could not determine latest version for region {machinaRegion}");
-                    return null;
-                }
-            }
-
-            return version;
-        }
-
-        public IOpcodeConfigEntry this[string name, MachinaRegion machinaRegion]
-        {
-            get
-            {
-                // 强制使用 Global
-                machinaRegion = "Global";
-                var version = GetVersion(machinaRegion);
-                if (version == null) return null;
 
                 var opcode = GetOpcode(name, opcodesConfig, version, "config", machinaRegion);
                 if (opcode == null)
