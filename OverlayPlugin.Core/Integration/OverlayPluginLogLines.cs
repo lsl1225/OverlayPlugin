@@ -52,8 +52,6 @@ namespace RainbowMage.OverlayPlugin
         private PluginConfig config;
         private TinyIoCContainer container;
 
-        private string versionCache = null;
-
         private int exceptionCount = 0;
         private const int maxExceptionsLogged = 3;
 
@@ -227,7 +225,7 @@ namespace RainbowMage.OverlayPlugin
             }
         }
 
-        private string GetVersion(MachinaRegion machinaRegion)
+        public IOpcodeConfigEntry this[string name, MachinaRegion machinaRegion]
         {
             get
             {
@@ -236,19 +234,19 @@ namespace RainbowMage.OverlayPlugin
                 {
                     LogOnce(LogLevel.Info, $"Could not detect game version from FFXIV_ACT_Plugin, defaulting to latest version for region {machinaRegion}");
 
-                var possibleVersions = new List<string>();
-                if (opcodesFile != null && opcodesFile.ContainsKey(machinaRegion))
-                {
-                    foreach (var key in opcodesFile[machinaRegion].Keys)
-                        possibleVersions.Add(key);
-                }
+                    var possibleVersions = new List<string>();
+                    if (opcodesFile != null && opcodesFile.ContainsKey(machinaRegion))
+                    {
+                        foreach (var key in opcodesFile[machinaRegion].Keys)
+                            possibleVersions.Add(key);
+                    }
 
-                if (opcodesConfig != null && opcodesConfig.ContainsKey(machinaRegion))
-                {
-                    foreach (var key in opcodesConfig[machinaRegion].Keys)
-                        possibleVersions.Add(key);
-                }
-                possibleVersions.Sort();
+                    if (opcodesConfig != null && opcodesConfig.ContainsKey(machinaRegion))
+                    {
+                        foreach (var key in opcodesConfig[machinaRegion].Keys)
+                            possibleVersions.Add(key);
+                    }
+                    possibleVersions.Sort();
 
                     if (possibleVersions.Count > 0)
                     {
